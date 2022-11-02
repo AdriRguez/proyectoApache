@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  asir_apache:
+      ports:
+      - 80:80
+      container_name: asir_apache
+      volumes:
+      - /home/asir2a/Escritorio/Docker/ProyectoApache/html:/var/www/html
+      - ConfApache:/etc/apache2
+      image: 'php:7.4-apache'
+volumes:
+  ConfApache:
