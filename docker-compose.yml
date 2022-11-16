@@ -1,0 +1,39 @@
+version: "3.9"
+services:
+  asir_apache:
+      ports:
+      - 80:80
+      - 8000:8000
+      networks:
+        bind_subnet:
+          ipv4_address: 10.2.0.254
+      container_name: asir_apache
+      volumes:
+      - /home/asir2a/Escritorio/Docker/ProyectoApache/html:/var/www/html
+      - ./ConfApache:/etc/apache2
+      image: 'php:7.4-apache'
+  bind9:
+    container_name: asir_bind9
+    image: internetsystemsconsortium/bind9:9.16
+    ports:
+    - 5300:53/udp
+    - 5300:53/tcp
+    networks:
+      bind_subnet:
+       ipv4_address: 10.2.0.3
+    volumes:
+    - /home/asir2a/Escritorio/Docker/ProyectoApache/ConfigDNS/Config:/etc/bind
+    - /home/asir2a/Escritorio/Docker/ProyectoApache/ConfigDNS/Zonas:/var/lib/bind
+  asir_cliente:
+    container_name: asir_cliente
+    image: alpine
+    networks:
+      - bind_subnet
+    stdin_open: true
+    tty: true
+    dns:
+      - 10.2.0.3
+networks:
+  bind_subnet:
+    external: true
+
