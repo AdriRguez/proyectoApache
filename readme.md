@@ -380,4 +380,3 @@ Realizamos un **restart** del contenedor de Apache y ya podemos comprobar su fun
 
 
 
-[README.md](README.md) de Noé Díaz Dos Santos para el repositorio [Proyecto Apache](https://github.com/ndiazdossantos/proyectoApache)
